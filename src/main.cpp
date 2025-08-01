@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+//#include <Adafruit_GFX.h>
+//#include <Adafruit_SSD1306.h>
 #include <Wire.h>
 #include <MPU6050.h>
 
@@ -21,7 +21,7 @@
 #define SCREEN_HEIGHT 64
 #define OLED_RESET    -1
 
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+//Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 // MPU6050 sensor object
 MPU6050 mpu;
@@ -183,7 +183,7 @@ void calibrateSensor() {
 void setup() {
   Serial.begin(115200);
   Wire.begin();
-
+/*
   // Initialiseer OLED display
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // I2C adres 0x3C
     Serial.println(F("SSD1306 niet gevonden!"));
@@ -196,7 +196,7 @@ void setup() {
   display.println("Segway!");
   display.display();
   delay(1000);
-  
+ */ 
   // Initialiseer MPU6050
   Serial.println("Initialiseren MPU6050...");
   mpu.initialize();
@@ -255,8 +255,8 @@ void loop() {
     Serial.print(" | Error: ");
     Serial.println(error);
     debugTime = currentTime;
-
-    // OLED update
+  }
+    /* OLED update
     display.clearDisplay();
     display.setTextSize(1);
     display.setTextColor(SSD1306_WHITE);
@@ -267,7 +267,7 @@ void loop() {
     display.println(pidOutput, 1);
     display.display();
   }
-
+*/
   
   delay(10); // 100Hz update rate
 }
