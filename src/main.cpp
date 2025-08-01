@@ -27,9 +27,9 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 MPU6050 mpu;
 
 // PID variabelen
-float kp = 40.0;  // Proportioneel
+float kp = 20.0;  // Proportioneel orgineel 40
 float ki = 0.0;   // Integraal (start met 0)
-float kd = 2.0;   // Differentieel
+float kd = 1.0;   // Differentieel orgineel 2.0
 
 float error = 0;      // Huidige fout 
 float lastError = 0;  // Vorige fout
@@ -210,6 +210,12 @@ void setup() {
   
   // Kalibreer de sensor (robot moet stil staan)
   Serial.println("Kalibreren... Houd robot stil!");
+  display.clearDisplay();
+  display.setCursor(0,0);
+  display.setTextSize(2);
+  display.setTextColor(SSD1306_WHITE);
+  display.println("Kalibreren...");
+  display.display();
   delay(3000);
   calibrateSensor();
   
